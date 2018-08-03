@@ -1,25 +1,4 @@
-
-# AirSimApp
-
-Demonstration WPF app for connecting to a [Microsoft AirSim](https://github.com/Microsoft/AirSim) RPC server and displaying vehicle information.
-
-## AirSimApp
-
-Project containing the actual WPF app. The app demos some command & control of a vehicle, intending to help test out the AirSimRpc library and see what the airsim library is capable of through the interfaces that it exposes.
-
-## AirSimRpc
-
-Library for accessing [Microsoft AirSim](https://github.com/Microsoft/AirSim) RPC methods from C#.
-
-## Db.Controls
-
-Reusable (hopefully) controls for a vehicle, e.g., altimeter and speed tapes.
-
-## Db.Converters
-
-Value converters used by Db.Controls and this solution.
-
-## MsgPackRpc
+# MsgPackRpc
 
 Library for calling [msgpack](https://msgpack.org/) RPCs. I wasn't able to find a supported and current library for doing this. I know this version isn't feature complete (doesn't support notification at the moment), and I'm sure it's not the most efficient, given that it works by taking the encoded JSON in the packed message, decoding that first to actual JSON, then deserializing _that_ into the actual object format, but I wasn't able to find a library that:
 
@@ -36,15 +15,3 @@ The interface exposes two important methods:
  2. `CallAsync<T>(/*...*/)`
 
 The methods do what you'd expect, and are intended to interact well with C#'s Task Parallel Library.
-
-## DotSpatialExtensions
-
-Extension methods for the [DotSpatial](https://github.com/DotSpatial/DotSpatial) library, filling in some gaps that I think it has and that are useful for these projects.
-
-## DotSpatialExtensions.Tests
-
-Unit tests for the DotSpatialExtensions project to give some confidence that the math shakes out.
-
-## WpfBBQWinRTXamlToolkit
-
-A place to store WPF-ized versions of the controls contained in the [Win RT XAML Toolkit](https://github.com/xyzzer/WinRTXamlToolkit). See that project's readme for more details.

@@ -1,4 +1,4 @@
-#region MIT License (c) 2018 Dan Brandt
+﻿#region MIT License (c) 2018 Dan Brandt
 
 // Copyright 2018 Dan Brandt
 //
@@ -19,25 +19,26 @@
 
 #endregion MIT License (c) 2018 Dan Brandt
 
-using Newtonsoft.Json;
+using MessagePack;
 
-namespace AirSimRpc
+namespace MsgPackRpc
 {
-    public class MultirotorState
+    [MessagePackObject]
+    public class RpcResponse
     {
-        [JsonProperty("collision")]
-        public CollisionInfo CollisionInfo { get; set; }
+        [Key(2)]
+        public object Error { get; set; }
 
-        [JsonProperty("gps_location")]
-        public GeoPoint GpsLocation { get; set; }
+        [Key(1)]
+        public uint MsgId { get; set; }
 
-        [JsonProperty("kinematics_estimated")]
-        public KinematicsState KinematicsEstimated { get; set; }
+        [Key(3)]
+        public object Result { get; set; }
 
-        [JsonProperty("kinematics_true")]
-        public KinematicsState KinematicsTrue { get; set; }
+        [IgnoreMember]
+        public string ResultAsJson { get; set; }
 
-        [JsonProperty("timestamp")]
-        public long TimeStamp { get; set; }
+        [Key(0)]
+        public int Type { get; set; }
     }
 }

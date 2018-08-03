@@ -19,30 +19,23 @@
 
 #endregion MIT License (c) 2018 Dan Brandt
 
-namespace Db
+using MessagePack;
+
+namespace MsgPackRpc
 {
-    /// <summary>Methods for calculating canonical modulo.</summary>
-    public static class Mod
+    [MessagePackObject]
+    public class RpcRequest
     {
-        /// <summary>Calculate x % y, where -1 % 3 = 2</summary>
-        public static int CanonicalModulo(int dividend, int divisor)
-        {
-            int temp = dividend % divisor;
-            return temp < 0 ? temp + divisor : temp;
-        }
+        [Key(0)]
+        public int Type { get; set; }
 
-        /// <summary>Calculate x % y, where -1 % 3 = 2</summary>
-        public static float CanonicalModulo(float dividend, float divisor)
-        {
-            float temp = dividend % divisor;
-            return temp < 0 ? temp + divisor : temp;
-        }
+        [Key(1)]
+        public uint MsgId { get; set; }
 
-        /// <summary>Calculate x % y, where -1 % 3 = 2</summary>
-        public static double CanonicalModulo(double dividend, double divisor)
-        {
-            double temp = dividend % divisor;
-            return temp < 0 ? temp + divisor : temp;
-        }
+        [Key(2)]
+        public string Method { get; set; }
+
+        [Key(3)]
+        public object[] Params { get; set; }
     }
 }
